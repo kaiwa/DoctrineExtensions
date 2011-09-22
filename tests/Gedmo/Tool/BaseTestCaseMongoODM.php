@@ -78,7 +78,7 @@ abstract class BaseTestCaseMongoODM extends \PHPUnit_Framework_TestCase
         $conn = new Connection(null, array(), $config);
 
         try {
-            $this->dm = DocumentManager::create($conn, 'gedmo_extensions_test', $config, $evm ?: $this->getEventManager());
+            $this->dm = DocumentManager::create($conn, $config, $evm ?: $this->getEventManager());
             $this->dm->getConnection()->connect();
         } catch (\MongoException $e) {
             $this->markTestSkipped('Doctrine MongoDB ODM failed to connect');
@@ -216,7 +216,7 @@ abstract class BaseTestCaseMongoODM extends \PHPUnit_Framework_TestCase
 
         $reader = new AnnotationReader();
         $reader->setDefaultAnnotationNamespace('Doctrine\\ODM\\MongoDB\\Mapping\\');
-        $mappingDriver = new AnnotationDriver($reader);
+        $mappingDriver = $this->getMetadataDriverImplementation();
 
         $config->expects($this->any())
             ->method('getMetadataDriverImpl')

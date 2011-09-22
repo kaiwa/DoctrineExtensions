@@ -277,7 +277,7 @@ class Annotation implements AnnotationDriverInterface
      *                                 Annotation::$validTypes array.
      * @return boolean
      */
-    protected function isValidField($meta, $field, $validType = null)
+    protected function isValidField(ClassMetadata $meta, $field, $validType = null)
     {
         $mapping = $meta->getFieldMapping($field);
 
