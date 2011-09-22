@@ -3,45 +3,47 @@
 namespace Tree\Fixture\Path;
 
 use Gedmo\Tree\Node as NodeInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 /**
  * @author Michael Williams <michael.williams@funsational.com>
  * 
- * @Document(repositoryClass="Gedmo\Tree\Document\Repository\PathRepository")
- * @gedmo:Tree(type="path")
+ * @ODM\Document(repositoryClass="Gedmo\Tree\Document\Repository\PathRepository")
+ * @Gedmo\Tree(type="path")
  */
 class Category implements NodeInterface
 {
-    /** @Id */
+    /** @ODM\Id */
     private $id;
 
     /**
-     * @gedmo:TreePathSource
-     * @String
+     * @Gedmo\TreePathSource
+     * @ODM\String
      */
     private $title;
 
     /**
-     * @gedmo:TreePath
-     * @String
+     * @Gedmo\TreePath
+     * @ODM\String
      */
     private $path = '';
 
     /**
-     * @gedmo:TreeParent
-     * @ReferenceOne(targetDocument="Category")
+     * @Gedmo\TreeParent
+     * @ODM\ReferenceOne(targetDocument="Category")
      */
     private $parent = null;
     
     /**
-     * @gedmo:TreeSort
-     * @Increment
+     * @Gedmo\TreeSort
+     * @ODM\Increment
      */
     private $sortOrder = 0;
     
     /**
-     * @gedmo:TreeChildCount
-     * @Increment
+     * @Gedmo\TreeChildCount
+     * @ODM\Increment
      */
     private $childCount = 0;
 
