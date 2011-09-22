@@ -7,12 +7,14 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo;
 use Doctrine\ODM\MongoDB\Cursor;
 use Gedmo\Tree\Mapping\Event\TreeAdapter;
+use Doctrine\ODM\MongoDB\UnitOfWork;
 
 /**
  * Doctrine event adapter for ODM adapted
  * for Tree behavior
  *
  * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
+ * @author Michael Williams <michael.williams@funsational.com>
  * @package Gedmo\Tree\Mapping\Event\Adapter
  * @subpackage ODM
  * @link http://www.gediminasm.org
@@ -20,5 +22,14 @@ use Gedmo\Tree\Mapping\Event\TreeAdapter;
  */
 final class ODM extends BaseAdapterODM implements TreeAdapter
 {
-    // Nothing specific yet
+    /**
+     *
+     * @param Doctrine\ODM\MongoDB\UnitOfWork $uow
+     * @param Doctrine\ODM\MongoDB\Mapping\ClassMetadataInfo $meta
+     * @param $object
+     */
+	public function computeSingleChangeSet($uow, $meta, $object)
+    {
+        $uow->recomputeSingleDocumentChangeSet($meta, $object);
+    }
 }

@@ -101,7 +101,7 @@ class TreeListener extends MappedEventSubscriber
             if ($config = $this->getConfiguration($om, $meta->name)) {
                 $usedClasses[$meta->name] = null;
                 $this->getStrategy($om, $meta->name)->processScheduledInsertion($om, $object);
-                $uow->recomputeSingleEntityChangeSet($meta, $object);
+                $this->getEventAdapter($args)->computeSingleChangeSet($uow, $meta, $object);
             }
         }
 

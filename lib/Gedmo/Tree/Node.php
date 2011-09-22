@@ -8,6 +8,7 @@ namespace Gedmo\Tree;
  * Tree Node
  *
  * @author Gediminas Morkevicius <gediminas.morkevicius@gmail.com>
+ * @author Michael Williams <michael.williams@funsational.com>
  * @package Gedmo.Tree
  * @subpackage Node
  * @link http://www.gediminasm.org
@@ -39,4 +40,25 @@ interface Node
      * @gedmo:TreeLevel
      * level of node.
      */
+
+	/**
+	 * @gedmo:TreePath
+	 * The field which holds the path for the node. This is how the tree is built
+	 * and children are determined. This is populated from generating a slug of the
+	 * @gedmo:TreePathSource field. You should never set this field manually, ie don't
+	 * create a set method for this property.
+	 */
+
+	/**
+	 * @gedmo:TreePathSource
+	 * The field which the @gedmo:TreePath field will be generated. This should be the title
+	 * or name of the node. Currently reuqired and only used for the path strategy
+	 */
+
+	/**
+	 * @gedmo:TreeSort
+	 * Used for storing the sort order of a node in the tree. Currently only
+	 * used and required for the path strategy. You should never set this
+	 * method. ie don't make a set method for this property.
+	 */
 }
